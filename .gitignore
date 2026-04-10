@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter / Colab
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets / env
+.env
+*.env
+*.pem
+*.key
+token.txt
+secrets.json
+
+# Google files
+*.gsheet
+*.gdoc
+*.gslides
+
+# Temp / cache
+.cache/
+tmp/
+temp/
+
+# Git backup folders
+.git_backup_before_clean_push_*/
+
+# Colab temp
+/content/
