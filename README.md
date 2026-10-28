@@ -1,141 +1,106 @@
-# CFO Executive Dashboard — TechFlow Inc.
+![CFO Executive Dashboard: TechFlow Inc.](assets/banner.svg)
 
-**Revenue grew, but profitability weakened because costs and budget performance are under pressure. Leadership should focus on margin protection, cost control, and realistic planning.**
+# CFO Executive Dashboard: TechFlow Inc.
 
-Profit Margin % vs Budget is the primary metric leadership should monitor weekly because it shows whether growth is translating into budget aligned profitability.
+**Revenue reached $110.2M, but results finished 10.1% below budget as costs grew faster than sales. This dashboard shows the CFO where margin is leaking and what to fix first.**
 
----
+![Looker Studio](https://img.shields.io/badge/Looker_Studio-1F4E79?style=flat-square&logo=looker&logoColor=white) ![Python](https://img.shields.io/badge/Python-1F4E79?style=flat-square&logo=python&logoColor=white) ![pandas](https://img.shields.io/badge/pandas-1F4E79?style=flat-square&logo=pandas&logoColor=white) ![Financial KPIs](https://img.shields.io/badge/Financial_KPIs-1F4E79?style=flat-square)
 
-## Live Dashboard
-[View Interactive Dashboard](https://lookerstudio.google.com/reporting/7edc9bf7-a093-4a6d-af91-8fd97fbd6e49)
-
-## Full Report
-[Download Executive Report](reports/techflow-inc-dashboard.pdf)
+**[View the live dashboard](https://lookerstudio.google.com/reporting/7edc9bf7-a093-4a6d-af91-8fd97fbd6e49)** · **[Download the executive report (PDF)](reports/techflow-inc-dashboard.pdf)**
 
 ---
 
-## Executive Summary
+## Business problem
 
-TechFlow delivered strong performance, reaching **$110.2M in revenue**, but profitability came under pressure as costs increased faster than revenue. Net profit totaled **$52.2M**, while performance finished **10.1% below budget**, signaling a gap between growth and financial efficiency.
-
-Underperformance is concentrated in **Sales and Engineering**, indicating a structural issue rather than isolated variance. Despite this, the company maintains strong liquidity, generating approximately **$49.3M in free cash flow**.
-
-Leadership should prioritize **margin protection, cost discipline, and realistic budget alignment** over continued focus on revenue growth alone.
-
----
-
-## North Star Metric
-
-**Profit Margin % vs Budget**
-
-This metric reflects whether revenue growth is translating into sustainable and efficient profitability.
-
----
-
-## Business Impact
-
-- Identified **$12.3M revenue gap vs budget**
-- Detected **margin compression despite revenue growth**
-- Isolated **Sales and Engineering as key performance drivers**
-- Confirmed **cash flow resilience despite earnings pressure**
-- Shifted focus from growth tracking to **profitability optimization**
-
----
-
-## Stakeholder Perspective
-
-### CFO Lens
-Evaluate profitability, budget variance, and cash flow sustainability to ensure financial health.
-
-### Leadership Lens
-Identify underperforming departments, adjust strategy, and prioritize margin recovery.
-
----
-
-## Dashboard Scope
-
-The dashboard is structured around four core executive questions:
+TechFlow Inc. is growing revenue, yet profitability is slipping. The CFO and leadership team need one view that answers four questions:
 
 1. How is overall revenue performing?
-2. Are profit trends keeping pace with growth?
+2. Are profits keeping pace with growth?
 3. Where are we underperforming against budget?
 4. What is happening across departments and operations?
 
----
+**North star metric:** Profit Margin % vs Budget, reviewed weekly, because it shows whether growth turns into budget-aligned profit.
 
-## Dashboard Pages
+## Approach
 
-1. Executive Financial Performance Overview
-2. Profitability Under Pressure Despite Revenue Growth
-3. Systemic Underperformance Against Budget
-4. Cash Flow Remains Resilient Despite Earnings Pressure
+1. **Generate the dataset** in Python (`scripts/generate_financial-data.ipynb`): synthetic monthly financials by department and region, with budget and prior-year figures.
+2. **Prepare summaries** in pandas: monthly, department, region and budget-variance tables (`data/`).
+3. **Define KPIs** as calculated fields in Looker Studio (see table below).
+4. **Build four executive pages**, each titled with its conclusion rather than a topic:
+   - Executive Financial Performance Overview
+   - Profitability Under Pressure Despite Revenue Growth
+   - Systemic Underperformance Against Budget
+   - Cash Flow Remains Resilient Despite Earnings Pressure
+5. **Validate** that totals match across every visual.
 
----
+## Key findings
 
-## KPI Definitions
+| Finding | Number | What it means |
+|---|---:|---|
+| Revenue | $110.2M | Growth is strong |
+| Net profit | $52.2M | Profitable, but under pressure |
+| Performance vs budget | −10.1% | A real gap between growth and efficiency |
+| Revenue gap vs budget | $12.3M | Budget assumptions were too optimistic |
+| Underperforming departments | Sales, Engineering | A structural issue, not one-off variance |
+| Free cash flow | ~$49.3M | Liquidity is healthy despite earnings pressure |
 
-- **Revenue** = Total sales generated
-- **Net Profit** = Revenue – Costs
-- **Profit Margin %** = Net Profit / Revenue
-- **Budget Variance %** = (Actual – Budget) / Budget
-- **Revenue Variance $** = Actual – Budget
-- **Operating Cash Flow** = Cash generated from operations
-- **Free Cash Flow** = Operating Cash Flow – CapEx
+### Recommendations
 
----
+| Priority | Action |
+|---|---|
+| High | Reduce cost inefficiencies in Sales and Engineering |
+| High | Shift the focus from revenue growth to margin protection |
+| Medium | Recalibrate budget assumptions |
+| Medium | Review profitability metrics weekly instead of monthly |
 
-## Leadership Recommendations
+### KPI definitions
 
-- Reduce cost inefficiencies in **Sales and Engineering**
-- Shift focus from revenue growth to **margin optimization**
-- Recalibrate budget assumptions
-- Monitor profitability metrics more frequently
+| KPI | Formula |
+|---|---|
+| Net Profit | Revenue − Costs |
+| Profit Margin % | Net Profit ÷ Revenue |
+| Budget Variance % | (Actual − Budget) ÷ Budget |
+| Revenue Variance $ | Actual − Budget |
+| Free Cash Flow | Operating Cash Flow − CapEx |
 
----
+## Visuals
 
-## Tools & Technologies
+**Executive overview**
+![Executive overview](images/dashboard-page-1.png)
 
-- Looker Studio
-- Python
-- Google Colab
-- Pandas
-- GitHub
+**Profitability under pressure**
+![Profitability](images/dashboard-page-2.png)
 
----
+<details>
+<summary>Budget performance and cash flow pages</summary>
 
-## How to Reproduce This Dashboard
+![Budget performance](images/dashboard-page-3.png)
+![Cash flow](images/dashboard-page-4.png)
 
-1. Connect dataset to Looker Studio
-2. Create calculated fields (margin, variance)
-3. Build KPI scorecards (Revenue, Profit, Margin, Variance)
-4. Create time series charts
-5. Add filters (date, department)
-6. Validate totals and ensure consistency across visuals
+</details>
 
----
+## How to run
 
-## Files Included
+1. Open `scripts/generate_financial-data.ipynb` in Jupyter or Google Colab and run it to regenerate the data:
+   ```bash
+   pip install -r requirements.txt
+   jupyter notebook scripts/
+   ```
+2. In Looker Studio, connect the CSVs in `data/` as data sources.
+3. Add the calculated fields from the KPI table, then build scorecards, time series and department/region breakdowns with date and department filters.
 
-- `README.md`
-- `reports/techflow-inc-dashboard.pdf`
-- `data/`
-- `scripts/`
+## Folder structure
 
----
-
-## Business Value
-
-This project demonstrates how financial reporting can evolve from static spreadsheets into an executive-ready decision tool.
-
-It enables leadership to:
-- Monitor financial performance in real time
-- Identify performance gaps quickly
-- Focus on profitability rather than just growth
-- Make more informed strategic decisions
-
----
+```text
+cfo-executive-dashboard-techflow/
+├── data/          # financial data + monthly, department, region and budget summaries
+├── scripts/       # data generation notebook
+├── reports/       # executive dashboard PDF
+├── images/        # dashboard screenshots for this README
+└── assets/        # banner
+```
 
 ## Contact
 
-- [LinkedIn](https://www.linkedin.com/in/juliocezarcarneiro)
-- [GitHub](https://github.com/juliocezarcarneiro)
+**Julio Carneiro** · Data Analyst · Toronto, ON
+[LinkedIn](https://www.linkedin.com/in/juliocezarcarneiro/) · [Portfolio](https://github.com/juliocezarcarneiro) · [Email](mailto:juliocezarcarneiro@outlook.com)

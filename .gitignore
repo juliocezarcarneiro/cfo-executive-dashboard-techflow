@@ -34,3 +34,13 @@ temp/
 
 # Colab temp
 /content/
+
+# Standard ignores
+.vscode/
+.idea/
+.venv/
+venv/
+.env.*
+!.env.example
+api_keys.py
+config.py
